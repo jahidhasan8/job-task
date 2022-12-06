@@ -1,36 +1,36 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link,useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SignupContext } from '../../contexts/SignupProvider';
 import LeftSide from '../LeftSide/LeftSide';
 
 const Step3 = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
-    const{signUp, setSignUp}=useContext(SignupContext)
-    const navigate=useNavigate()
+    const { signUp, setSignUp } = useContext(SignupContext)
+    const navigate = useNavigate()
 
     const handleSignup = (data) => {
-//    e.preventDefault()
-    
-    setSignUp({
-        ...signUp,
-        password:data.password
-        
-    })
-    console.log(signUp);
+        //    e.preventDefault()
 
-    fetch('https://test.nexisltd.com/signup',{
-        method:'POST',
-        headers:{
-            "content-type":"application/json"
-        },
-        body:JSON.stringify(signUp)
-    })
-    .then(res=>res.json())
-    .then(data=>{
-        console.log(data);
-    })
-    
+        setSignUp({
+            ...signUp,
+            password: data.password
+
+        })
+        console.log(signUp);
+
+        fetch('https://test.nexisltd.com/signup', {
+            method: 'POST',
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(signUp)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
+
     }
 
 
@@ -45,7 +45,7 @@ const Step3 = () => {
                     <div className="form-control w-full max-w-xs mt-16">
 
                         <input type="password" {...register("password", {
-                            minLength:{value:8,message:'password must be 8 characters'}
+                            minLength: { value: 8, message: 'password must be 8 characters or more' }
                         })} className="input w-full max-w-xs" placeholder='Write password' />
                         <hr />
                         {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
