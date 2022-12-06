@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import istock from '../../assets/Image/istock.png'
-import logo from '../../assets/Image/logo.png'
+
 import { useForm } from 'react-hook-form';
 import { Link,useNavigate } from 'react-router-dom';
 import { SignupContext } from '../../contexts/SignupProvider';
+import LeftSide from '../LeftSide/LeftSide';
 const Step1 = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
     const{signUp, setSignUp}=useContext(SignupContext)
@@ -11,24 +11,23 @@ const Step1 = () => {
 
     const handleSignup = (data) => {
 //    e.preventDefault()
-    console.log(data);
+    
+    setSignUp({
+        ...signUp,
+        first_name:data.fname,
+        last_name:data.lname,
+
+    })
         
     navigate('/step2')
     
     }
 
     return (
-        <div className='grid grid-cols-2'>
-            <div className=' w-full mx-14'>
-                <div className=''>
-                  <img src={logo} alt="" />
-                </div>
-                <div>
-                <img src={istock} alt="" />
-                </div>
-            </div>
-            <div className=' w-[516px] mt-24 mx-36 '>
-                <h1 className='font-bold text-center  text-xl'>SignUp Form</h1>
+        <div className='grid lg:grid-cols-2'>
+           <LeftSide></LeftSide>
+            <div className=' w-full mt-24 lg:px-36 p-8'>
+                <h1 className='font-bold  text-xl'>SignUp Form</h1>
                 <form  onSubmit={handleSubmit(handleSignup)}>
 
                     <div className="form-control w-full max-w-xs border-slate-400">

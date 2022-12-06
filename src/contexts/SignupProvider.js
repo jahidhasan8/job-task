@@ -1,8 +1,8 @@
 import React, { createContext, useState } from 'react';
 
 
-export const SignupContext=createContext()
-const SignupProvider = ({children}) => {
+export const SignupContext = createContext()
+const SignupProvider = ({ children }) => {
 
     const [signUp, setSignUp] = useState({
         first_name: "",
@@ -12,7 +12,7 @@ const SignupProvider = ({children}) => {
         password: "",
     })
 
-    const signupInfo={
+    const signupInfo = {
         signUp,
         setSignUp
     }
