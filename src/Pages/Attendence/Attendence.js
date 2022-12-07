@@ -1,27 +1,32 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import logo from '../../assets/Image/logo.png'
+import TableData from '../TableData/TableData';
 
 const Attendence = () => {
-     
-    const {data:test=[]}=useQuery({
-        queryKey:['test'],
-        queryFn:async()=>{
-            try{
-                const res=await fetch('https://test.nexisltd.com/test',{ 
-                headers:{
-                        authorization:`bearer ${localStorage.getItem('token')}`
+
+    const { data: test = {},isLoading } = useQuery({
+        queryKey: ['test'],
+        queryFn: async () => {
+            try {
+                const res = await fetch('https://test.nexisltd.com/test', {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('token')}`
                     }
                 })
-                const data=await res.json()
+                const data = await res.json()
                 return data
             }
-            catch(error){
+            catch (error) {
                 console.log(error.message);
             }
         }
     })
     console.log(test);
+     
+    if(isLoading){
+        return 
+    }
 
     return (
         <div>
@@ -39,17 +44,11 @@ const Attendence = () => {
                         </tr>
                     </thead>
                     <tbody>
+                       {
+                            Object.values(test).map((attendentInfo) =>  <TableData data={attendentInfo}></TableData>)
+                        }
 
-                        {/* {
-                            test.map((attandance, i) => <tr key={attandance.id}>
-                
-                                <td>{date}</td>
-                                <td>{name}</td>
-                                <td>{status}</td>
-
-                            </tr>
-                            )
-                        } */}
+                      
 
                     </tbody>
                 </table>
