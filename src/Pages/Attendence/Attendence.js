@@ -8,9 +8,9 @@ const Attendence = () => {
         queryKey:['test'],
         queryFn:async()=>{
             try{
-                const res=await fetch('https://test.nexisltd.com/test',{
-                    headers:{
-                        authorization:`bearer ${localStorage.getItem('access_token')}`
+                const res=await fetch('https://test.nexisltd.com/test',{ 
+                headers:{
+                        authorization:`bearer ${localStorage.getItem('token')}`
                     }
                 })
                 const data=await res.json()
@@ -22,6 +22,7 @@ const Attendence = () => {
         }
     })
     console.log(test);
+
     return (
         <div>
             <img src={logo} alt="" />

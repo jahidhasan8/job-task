@@ -15,13 +15,14 @@ const Login = () => {
                 "content-type": "application/json"
             },
             body: JSON.stringify({
-                email:data.email,
-                password:data.password
+                email: data.email,
+                password: data.password
             })
         })
             .then(res => res.json())
-            .then(data => {
-                console.log(data);
+            .then(infoData => {
+                console.log(infoData);
+                localStorage.setItem('token', infoData.access_token)
                 navigate('/attendance')
             })
 
