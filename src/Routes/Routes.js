@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../layout/Main";
+import Attendence from "../Pages/Attendence/Attendence";
 import Login from "../Pages/Login/Login";
 import Step1 from "../Pages/Step1/Step1";
 import Step2 from "../Pages/Step2/Step2";
@@ -26,6 +27,10 @@ export const routes = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login></Login>
+            },
+            {
+                path: '/attendance',
+                element: <Attendence></Attendence>
             },
         ]
     }
