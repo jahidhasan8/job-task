@@ -5,22 +5,24 @@ import LeftSide from '../LeftSide/LeftSide';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
     const handleSignup = (data) => {
-       const loginData=(data.email,data.password)
         console.log(data);
-        
         fetch('https://test.nexisltd.com/login', {
             method: 'POST',
             headers: {
                 "content-type": "application/json"
             },
-            body: JSON.stringify(loginData)
+            body: JSON.stringify({
+                email:data.email,
+                password:data.password
+            })
         })
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                navigate('')
             })
 
     }
